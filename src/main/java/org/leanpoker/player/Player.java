@@ -3,6 +3,7 @@ package org.leanpoker.player;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import org.slf4j.Logger;
 
 import static org.slf4j.LoggerFactory.getLogger;
@@ -10,12 +11,14 @@ import static org.slf4j.LoggerFactory.getLogger;
 public class Player {
 
     private static final Logger log = getLogger(Player.class);
-    static final String VERSION = "5";
+    static final String VERSION = "6";
 
     public static int betRequest(JsonNode request) {
-        log.info("betRequest: {}", request);
+//        log.info("betRequest: {}", request);
         try {
-            var betRequest = new ObjectMapper().readValue(request.toString(), BetRequest.class);
+            ObjectMapper objectMapper = new ObjectMapper()
+                    .setPropertyNamingStrategy(PropertyNamingStrategy.SNAKE_CASE);
+            var betRequest = objectMapper.readValue(request.toString(), BetRequest.class);
             return playPoker(betRequest);
         } catch (JsonProcessingException e) {
             log.error(e.getMessage());
@@ -28,6 +31,7 @@ public class Player {
 
         var card1 = player.getHoleCards().get(0);
         var card2 = player.getHoleCards().get(1);
+
 
         log.info("card1: {}, card2: {}", card1, card2);
         // If we have a pair, go all in.
