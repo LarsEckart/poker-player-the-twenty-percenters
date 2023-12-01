@@ -11,7 +11,7 @@ import static org.slf4j.LoggerFactory.getLogger;
 public class Player {
 
     private static final Logger log = getLogger(Player.class);
-    static final String VERSION = "6";
+    static final String VERSION = "7";
 
     public static int betRequest(JsonNode request) {
 //        log.info("betRequest: {}", request);
@@ -34,6 +34,7 @@ public class Player {
 
 
         log.info("card1: {}, card2: {}", card1, card2);
+
         // If we have a pair, go all in.
         if (card1.getRank().equals(card2.getRank())) {
             log.info("We have a pair - going all in!");
@@ -46,7 +47,11 @@ public class Player {
             return 1000;
         }
 
-
+        // If we pay the big blind, call once.
+        if (player.getBet() == betRequest.getBigBlind()) {
+            log.info("We pay the big blind - calling once.");
+            return betRequest.getCurrentBuyIn() - player.getBet();
+        }
 
         return 0;
     }
