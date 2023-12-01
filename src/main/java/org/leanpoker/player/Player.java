@@ -10,7 +10,7 @@ import static org.slf4j.LoggerFactory.getLogger;
 public class Player {
 
     private static final Logger log = getLogger(Player.class);
-    static final String VERSION = "4";
+    static final String VERSION = "5";
 
     public static int betRequest(JsonNode request) {
         log.info("betRequest: {}", request);
@@ -32,11 +32,13 @@ public class Player {
         log.info("card1: {}, card2: {}", card1, card2);
         // If we have a pair, go all in.
         if (card1.getRank().equals(card2.getRank())) {
+            log.info("We have a pair - going all in!");
             return 1000;
         }
 
         // If we have a high card, go all in.
         if (card1.getRank().equals("A") || card2.getRank().equals("A")) {
+            log.info("We have a high card - going all in!");
             return 1000;
         }
 
