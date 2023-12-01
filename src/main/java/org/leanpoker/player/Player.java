@@ -16,20 +16,32 @@ public class Player {
         log.info("betRequest: {}", request);
         try {
             var betRequest = new ObjectMapper().readValue(request.toString(), BetRequest.class);
-            var player = betRequest.getPlayers().get(betRequest.getInAction());
-
-            var card1 = player.getHoleCards().get(0);
-            var card2 = player.getHoleCards().get(1);
-
-            log.info("card1: {}, card2: {}", card1, card2);
-            // If we have a pair, go all in.
-            if (card1.getRank().equals(card2.getRank())) {
-                return 1000; // betRequest.getCurrentBuyIn() - player.getBet() + player.getStack();
-            }
+            return playPoker(betRequest);
         } catch (JsonProcessingException e) {
             log.error(e.getMessage());
             return 0;
         }
+    }
+
+    private static int playPoker(BetRequest betRequest) {
+        var player = betRequest.getPlayers().get(betRequest.getInAction());
+
+        var card1 = player.getHoleCards().get(0);
+        var card2 = player.getHoleCards().get(1);
+
+        log.info("card1: {}, card2: {}", card1, card2);
+        // If we have a pair, go all in.
+        if (card1.getRank().equals(card2.getRank())) {
+            return 1000;
+        }
+
+        // If we have a high card, go all in.
+        if (card1.getRank().equals("A") || card2.getRank().equals("A")) {
+            return 1000;
+        }
+
+
+
         return 0;
     }
 
