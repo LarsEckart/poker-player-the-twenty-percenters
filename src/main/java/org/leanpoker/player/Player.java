@@ -11,7 +11,7 @@ import static org.slf4j.LoggerFactory.getLogger;
 public class Player {
 
     private static final Logger log = getLogger(Player.class);
-    static final String VERSION = "7";
+    static final String VERSION = "8";
 
     public static int betRequest(JsonNode request) {
 //        log.info("betRequest: {}", request);
@@ -41,10 +41,10 @@ public class Player {
             return 1000;
         }
 
-        // If we have a high card, go all in.
+        // If we have a high card, check or pay minimum buy-in.
         if (card1.getRank().equals("A") || card2.getRank().equals("A")) {
-            log.info("We have a high card - going all in!");
-            return 1000;
+            log.info("We have a high card - checking or paying minimum buy-in.");
+            return Math.max(betRequest.getCurrentBuyIn() - player.getBet(), betRequest.getMinimumRaise());
         }
 
         // If we pay the big blind, call once.
