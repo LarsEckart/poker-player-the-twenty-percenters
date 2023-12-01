@@ -11,7 +11,7 @@ import static org.slf4j.LoggerFactory.getLogger;
 public class Player {
 
     private static final Logger log = getLogger(Player.class);
-    static final String VERSION = "9";
+    static final String VERSION = "10";
 
     public static int betRequest(JsonNode request) {
 //        log.info("betRequest: {}", request);
@@ -38,7 +38,7 @@ public class Player {
         // If we have a pair, go all in.
         if (card1.getRank().equals(card2.getRank())) {
             log.info("We have a pair - going all in!");
-            return 1000;
+            return 200;
         }
 
         // If we have a high card, check or pay minimum buy-in.
