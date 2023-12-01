@@ -1,0 +1,63 @@
+{
+  "tournament_id": "6569e1204a783d000215feb5",
+  "game_id": "6569e357ceda6000024ef0ba",
+  "round": 19,
+  "players": [
+    {
+      "name": "Winnie the Pot",
+      "stack": 2022,
+      "status": "active",
+      "bet": 0,
+      "time_used": 4364144,
+      "version": "Demo player",
+      "id": 0
+    },
+    {
+      "name": "Bluffy the Vampire",
+      "stack": 1,
+      "status": "active",
+      "bet": 3,
+      "time_used": 4121702,
+      "version": "Demo player",
+      "id": 1
+    },
+    {
+      "name": "Darth Raiser",
+      "stack": 998,
+      "status": "active",
+      "bet": 6,
+      "time_used": 4130097,
+      "version": "Demo player",
+      "id": 2
+    },
+    {
+      "name": "the twenty percenters",
+      "stack": 970,
+      "status": "active",
+      "bet": 0,
+      "hole_cards": [
+        {
+          "rank": "A",
+          "suit": "diamonds"
+        },
+        {
+          "rank": "7",
+          "suit": "clubs"
+        }
+      ],
+      "time_used": 12462454,
+      "version": "2-with-logging",
+      "id": 3
+    }
+  ],
+  "small_blind": 3,
+  "big_blind": 6,
+  "orbits": 4,
+  "dealer": 0,
+  "community_cards": [],
+  "current_buy_in": 6,
+  "pot": 9,
+  "in_action": 3,
+  "minimum_raise": 3,
+  "bet_index": 2
+}
